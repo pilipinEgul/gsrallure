@@ -35,7 +35,26 @@
   .header__heading-logo {
     max-width: {{ section.settings.logo_width }}px;
   }
+  /* Header background */
+  .header {
+    background-color: #000;
+  }
 
+  /* Make text and links white for contrast */
+  .header,
+  .header a,
+  .header__menu-item,
+  .list-menu__item--link,
+  .header__heading-link {
+    color: #fff;
+  }
+
+  /* Optional: Make SVG icons white */
+  .header svg,
+  .header .icon {
+    fill: #fff;
+    color: #fff;
+  }
   @media screen and (min-width: 990px) {
     header-drawer {
       display: none;

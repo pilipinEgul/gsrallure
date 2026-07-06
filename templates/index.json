@@ -1,47 +1,72 @@
 {
   "sections": {
     "hero": {
-      "type": "image-banner",
+      "type": "slideshow",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide-1": {
+          "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/gsr_allure_1.png",
             "heading": "Don't limit yourself.",
-            "heading_size": "h0"
+            "heading_size": "h0",
+            "subheading": "Considered pieces in jewelry, beauty and everyday essentials.",
+            "button_label": "Shop the collection",
+            "link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": true,
+            "text_alignment": "left",
+            "image_overlay_opacity": 15,
+            "color_scheme": "background-1",
+            "text_alignment_mobile": "center"
           }
         },
-        "text": {
-          "type": "text",
+        "slide-2": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Considered pieces in jewelry, beauty and everyday essentials — chosen for quality, made to last.</p>",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop the collection",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "image": "",
+            "heading": "New arrivals",
+            "heading_size": "h0",
+            "subheading": "Chosen for quality, made to last.",
+            "button_label": "Discover now",
+            "link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": true,
+            "text_alignment": "left",
+            "image_overlay_opacity": 15,
+            "color_scheme": "background-1",
+            "text_alignment_mobile": "center"
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": ["slide-1", "slide-2"],
       "settings": {
-        "image": "shopify://shop_images/gsr_allure_1.png",
-        "image_overlay_opacity": 22,
-        "image_height": "large",
-        "adapt_height_first_image": false,
-        "desktop_content_position": "middle-left",
-        "show_text_box": false,
-        "desktop_content_alignment": "left",
-        "color_scheme": "background-1",
-        "mobile_content_alignment": "left",
-        "stack_images_on_mobile": true,
-        "show_text_below": false
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 7,
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m-1": { "type": "item", "settings": { "text": "Free shipping over $50" } },
+        "m-2": { "type": "item", "settings": { "text": "Dispatched within 24 hours" } },
+        "m-3": { "type": "item", "settings": { "text": "30-day easy returns" } },
+        "m-4": { "type": "item", "settings": { "text": "Secure encrypted checkout" } },
+        "m-5": { "type": "item", "settings": { "text": "Thousands of five-star reviews" } }
+      },
+      "block_order": ["m-1", "m-2", "m-3", "m-4", "m-5"],
+      "settings": {
+        "color_scheme": "inverse",
+        "text_size": 1.1,
+        "speed": 40,
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "categories": {
@@ -50,21 +75,54 @@
         "cat-1": { "type": "featured_collection", "settings": { "collection": "" } },
         "cat-2": { "type": "featured_collection", "settings": { "collection": "" } },
         "cat-3": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-4": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-5": { "type": "featured_collection", "settings": { "collection": "" } }
+        "cat-4": { "type": "featured_collection", "settings": { "collection": "" } }
       },
-      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4", "cat-5"],
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
       "settings": {
         "title": "Shop by category",
         "heading_size": "h2",
         "image_ratio": "portrait",
-        "columns_desktop": 5,
+        "columns_desktop": 4,
         "color_scheme": "background-1",
         "show_view_all": true,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 96,
         "padding_bottom": 64
+      }
+    },
+    "feature": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": { "heading": "Made to last", "heading_size": "h1" }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every piece is curated, tested and guaranteed — quality you can feel, at a price that makes sense.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": { "button_label": "Our story", "button_link": "shopify://collections/all" }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "image": "",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "left",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "best_sellers": {
@@ -94,31 +152,79 @@
         "padding_bottom": 64
       }
     },
-    "why_shop": {
-      "type": "multicolumn",
+    "collage": {
+      "type": "collage",
       "blocks": {
-        "col-1": { "type": "column", "settings": { "image": "", "title": "Fast shipping", "text": "<p>Dispatched within 24 hours.</p>", "link_label": "", "link": "" } },
-        "col-2": { "type": "column", "settings": { "image": "", "title": "Secure checkout", "text": "<p>Encrypted, protected payments.</p>", "link_label": "", "link": "" } },
-        "col-3": { "type": "column", "settings": { "image": "", "title": "Premium quality", "text": "<p>Curated, tested, guaranteed.</p>", "link_label": "", "link": "" } },
-        "col-4": { "type": "column", "settings": { "image": "", "title": "Easy returns", "text": "<p>30 days, no questions asked.</p>", "link_label": "", "link": "" } },
-        "col-5": { "type": "column", "settings": { "image": "", "title": "Loved by many", "text": "<p>Thousands of five-star reviews.</p>", "link_label": "", "link": "" } }
+        "block-1": { "type": "collection", "settings": { "collection": "" } },
+        "block-2": { "type": "image", "settings": { "image": "", "image_padding": false } },
+        "block-3": { "type": "collection", "settings": { "collection": "" } }
       },
-      "block_order": ["col-1", "col-2", "col-3", "col-4", "col-5"],
+      "block_order": ["block-1", "block-2", "block-3"],
       "settings": {
-        "title": "Every detail, considered",
+        "heading": "Curated edits",
         "heading_size": "h2",
-        "image_width": "third",
-        "image_ratio": "square",
-        "columns_desktop": 5,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "background-1",
+        "padding_top": 32,
+        "padding_bottom": 64
+      }
+    },
+    "spotlight": {
+      "type": "featured-product",
+      "blocks": {
+        "title": { "type": "title", "settings": { "heading_size": "h1" } },
+        "price": { "type": "price", "settings": {} },
+        "text": { "type": "text", "settings": { "text": "Editor's pick", "text_style": "uppercase" } },
+        "variant_picker": { "type": "variant_picker", "settings": { "picker_type": "button" } },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } }
+      },
+      "block_order": ["text", "title", "price", "variant_picker", "buy_buttons"],
+      "settings": {
+        "product": "",
         "color_scheme": "background-2",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 88,
-        "padding_bottom": 88
+        "secondary_background": false,
+        "media_position": "left",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "story": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": { "heading": "<p>Considered by design</p>", "heading_size": "h1" }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We chase quality over noise. Fewer, better things — chosen with care, backed by service that treats you like a person, not an order number.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop everything",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "testimonials": {
@@ -190,9 +296,13 @@
   },
   "order": [
     "hero",
+    "marquee",
     "categories",
+    "feature",
     "best_sellers",
-    "why_shop",
+    "collage",
+    "spotlight",
+    "story",
     "testimonials",
     "gallery",
     "newsletter"

@@ -1,0 +1,173 @@
+{%- style -%}
+  .marquee-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.6 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.6 | round: 0 }}px;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    .marquee-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: marquee-scroll-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 3.5rem;
+    font-size: {{ section.settings.text_size }}rem;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .marquee__sep {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.55;
+  }
+
+  @keyframes marquee-scroll-{{ section.id }} {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .marquee__group:nth-child(2) { display: none; }
+  }
+{%- endstyle -%}
+
+<div class="marquee marquee-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.blocks.size > 0 -%}
+    <div class="marquee__track" aria-hidden="false">
+      {%- for i in (1..2) -%}
+        <div class="marquee__group" style="display:flex;align-items:center;">
+          {%- for block in section.blocks -%}
+            <span class="marquee__item" {{ block.shopify_attributes }}>
+              {{ block.settings.text | escape }}
+            </span>
+            <span class="marquee__sep" aria-hidden="true"></span>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <div class="page-width"><p style="text-align:center;">{{ 'onboarding.marquee' | default: 'Add items to your marquee' }}</p></div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "inverse",
+      "label": "Color scheme"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 0.8,
+      "max": 2.4,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Text size",
+      "default": 1.1
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll duration (lower is faster)",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping over $50"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Free shipping over $50" } },
+        { "type": "item", "settings": { "text": "30-day easy returns" } },
+        { "type": "item", "settings": { "text": "Secure checkout" } },
+        { "type": "item", "settings": { "text": "Dispatched within 24 hours" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

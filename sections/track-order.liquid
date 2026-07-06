@@ -1,0 +1,257 @@
+{%- style -%}
+  .track-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .track-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .track__wrap { max-width: 72rem; margin: 0 auto; text-align: center; }
+  .track__eyebrow {
+    display: inline-block; text-transform: uppercase; letter-spacing: 0.18em;
+    font-size: 1.15rem; font-weight: 600; color: var(--gsr-gold, #c8a96a); margin-bottom: 1.2rem;
+  }
+  .track__subheading { color: var(--gsr-muted, rgba(0,0,0,.6)); font-size: 1.7rem; margin-top: 1rem; }
+
+  .track__card {
+    margin: 4rem auto 0;
+    max-width: 60rem;
+    background: rgba(var(--color-background), 1);
+    border: 1px solid var(--gsr-hairline, rgba(0,0,0,.09));
+    border-radius: var(--gsr-radius-lg, 22px);
+    box-shadow: var(--gsr-shadow-md, 0 8px 24px rgba(0,0,0,.08));
+    padding: 3.2rem;
+    text-align: left;
+  }
+  .track__label { display: block; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 1rem; }
+  .track__form { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .track__input {
+    flex: 1 1 24rem; min-height: 5.2rem; padding: 0 1.8rem;
+    border: 1px solid var(--gsr-hairline-strong, rgba(0,0,0,.16));
+    border-radius: 100px; font-size: 1.6rem;
+    background: rgba(var(--color-background), 1); color: rgb(var(--color-foreground));
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .track__input:focus {
+    outline: none; border-color: var(--gsr-gold, #c8a96a);
+    box-shadow: 0 0 0 3px var(--gsr-gold-soft, rgba(200,169,106,.14));
+  }
+  .track__submit {
+    flex: none; min-height: 5.2rem; padding: 0 3.2rem; border: 0; cursor: pointer;
+    border-radius: 100px; background: rgb(var(--color-foreground)); color: rgb(var(--color-background));
+    font-weight: 600; font-size: 1.5rem; transition: transform .25s var(--gsr-ease, ease);
+  }
+  .track__submit:hover { transform: translateY(-2px); }
+  .track__secondary { text-align: center; margin-top: 2rem; font-size: 1.4rem; color: var(--gsr-muted, rgba(0,0,0,.6)); }
+  .track__secondary a { color: rgb(var(--color-foreground)); text-underline-offset: .3em; }
+
+  /* Status timeline */
+  .track__steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; margin: 6rem auto 0; max-width: 68rem; position: relative;
+  }
+  .track__steps::before {
+    content: ""; position: absolute; top: 1.4rem; left: 12%; right: 12%; height: 2px;
+    background: var(--gsr-hairline, rgba(0,0,0,.12));
+  }
+  .track__step { text-align: center; position: relative; }
+  .track__dot {
+    width: 2.8rem; height: 2.8rem; border-radius: 50%; margin: 0 auto 1.2rem;
+    background: rgba(var(--color-background),1);
+    border: 2px solid var(--gsr-gold, #c8a96a);
+    display: grid; place-items: center; position: relative; z-index: 1;
+  }
+  .track__dot span { width: 1rem; height: 1rem; border-radius: 50%; background: var(--gsr-gold, #c8a96a); }
+  .track__step-title { font-weight: 600; font-size: 1.4rem; letter-spacing: -0.01em; }
+  .track__step-note { color: var(--gsr-muted, rgba(0,0,0,.6)); font-size: 1.25rem; margin-top: .3rem; }
+
+  /* FAQ */
+  .track__faq { max-width: 60rem; margin: 6rem auto 0; text-align: left; }
+  .track__faq-item {
+    border-bottom: 1px solid var(--gsr-hairline, rgba(0,0,0,.09)); padding: 1.8rem 0;
+  }
+  .track__faq-item summary {
+    cursor: pointer; font-weight: 600; letter-spacing: -0.01em; font-size: 1.6rem;
+    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  .track__faq-item summary::-webkit-details-marker { display: none; }
+  .track__faq-item summary::after { content: "+"; font-size: 2rem; color: var(--gsr-gold, #c8a96a); transition: transform .3s; }
+  .track__faq-item[open] summary::after { content: "\2013"; }
+  .track__faq-answer { color: var(--gsr-muted, rgba(0,0,0,.7)); margin-top: 1rem; line-height: 1.6; }
+
+  @media screen and (max-width: 749px) {
+    .track__steps { grid-template-columns: repeat(2, 1fr); gap: 2.4rem 1rem; }
+    .track__steps::before { display: none; }
+    .track__card { padding: 2.4rem; }
+  }
+{%- endstyle -%}
+
+<div class="track color-{{ section.settings.color_scheme }} gradient">
+  <div class="track-{{ section.id }} page-width">
+    <div class="track__wrap">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="track__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h1 class="title {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="track__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Tracking lookup card {%- endcomment -%}
+    <div class="track__card">
+      <form data-track-form data-track-url="{{ section.settings.tracking_url | escape }}" role="search">
+        <label class="track__label" for="Track-Number-{{ section.id }}">{{ section.settings.input_label | escape }}</label>
+        <div class="track__form">
+          <input
+            id="Track-Number-{{ section.id }}"
+            data-track-input
+            class="track__input"
+            type="text"
+            name="tracking_number"
+            placeholder="{{ section.settings.input_placeholder | escape }}"
+            autocomplete="off"
+          >
+          <button type="submit" class="track__submit">{{ section.settings.button_label | escape }}</button>
+        </div>
+      </form>
+      {%- if section.settings.show_account_link -%}
+        <p class="track__secondary">
+          {{ section.settings.account_prompt | escape }}
+          <a href="{{ routes.account_url | default: routes.account_login_url }}">{{ section.settings.account_link_label | escape }}</a>
+        </p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Status timeline {%- endcomment -%}
+    {%- if section.settings.show_steps -%}
+      <div class="track__steps">
+        {%- assign steps = section.settings.steps | split: '|' -%}
+        {%- for step in steps -%}
+          {%- assign parts = step | split: '::' -%}
+          <div class="track__step">
+            <div class="track__dot"><span></span></div>
+            <div class="track__step-title">{{ parts[0] | strip }}</div>
+            {%- if parts[1] -%}<div class="track__step-note">{{ parts[1] | strip }}</div>{%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} FAQ blocks {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="track__faq">
+        {%- if section.settings.faq_heading != blank -%}
+          <h2 class="h3" style="text-align:center; margin-bottom:2.4rem;">{{ section.settings.faq_heading | escape }}</h2>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          <details class="track__faq-item" {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+            <summary>{{ block.settings.question | escape }}</summary>
+            <div class="track__faq-answer rte">{{ block.settings.answer }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.addEventListener('submit', function (e) {
+      var form = e.target.closest('[data-track-form]');
+      if (!form) return;
+      e.preventDefault();
+      var input = form.querySelector('[data-track-input]');
+      var num = (input && input.value || '').trim();
+      if (!num) { if (input) input.focus(); return; }
+      var tpl = form.getAttribute('data-track-url') || '';
+      var url;
+      if (!tpl) { url = 'https://parcelsapp.com/en/tracking/' + encodeURIComponent(num); }
+      else if (tpl.indexOf('{number}') > -1) { url = tpl.replace('{number}', encodeURIComponent(num)); }
+      else { url = tpl + encodeURIComponent(num); }
+      window.open(url, '_blank', 'noopener');
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Track order",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Order tracking" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Track your order" },
+    {
+      "type": "select", "id": "heading_size", "label": "Heading size",
+      "options": [
+        { "value": "h1", "label": "Large" },
+        { "value": "h0", "label": "Extra large" }
+      ],
+      "default": "h0"
+    },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Enter your tracking number to see the latest delivery status." },
+    { "type": "header", "content": "Lookup form" },
+    { "type": "text", "id": "input_label", "label": "Field label", "default": "Tracking number" },
+    { "type": "text", "id": "input_placeholder", "label": "Field placeholder", "default": "e.g. 1Z999AA10123456784" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Track" },
+    {
+      "type": "text", "id": "tracking_url", "label": "Tracking provider URL",
+      "info": "Use {number} where the tracking number goes. Examples: https://parcelsapp.com/en/tracking/{number} , https://track.aftership.com/{number} , https://t.17track.net/en#nums={number}. Leave blank to use a universal tracker.",
+      "default": "https://parcelsapp.com/en/tracking/{number}"
+    },
+    { "type": "header", "content": "Account link" },
+    { "type": "checkbox", "id": "show_account_link", "label": "Show \"view my orders\" link", "default": true },
+    { "type": "text", "id": "account_prompt", "label": "Prompt text", "default": "Have an account?" },
+    { "type": "text", "id": "account_link_label", "label": "Link label", "default": "View all your orders" },
+    { "type": "header", "content": "Status timeline" },
+    { "type": "checkbox", "id": "show_steps", "label": "Show status timeline", "default": true },
+    {
+      "type": "textarea", "id": "steps", "label": "Steps",
+      "info": "One step per line separator |. Use Title::Note for a small note. Format: Title::Note | Title::Note",
+      "default": "Ordered::We received it | Packed::Prepared with care | Shipped::On the way | Delivered::Enjoy"
+    },
+    { "type": "header", "content": "FAQ" },
+    { "type": "text", "id": "faq_heading", "label": "FAQ heading", "default": "Common questions" },
+    {
+      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "options": [
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "background-1"
+    },
+    { "type": "header", "content": "Section padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "When will my order ship?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Orders are dispatched within 24 hours. You'll receive a tracking number by email once it ships.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Track order",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "When will my order ship?", "answer": "<p>Orders are dispatched within 24 hours. You'll get a tracking number by email once it ships.</p>" } },
+        { "type": "faq", "settings": { "question": "Where do I find my tracking number?", "answer": "<p>It's in your shipping confirmation email. Paste it above to see live status.</p>" } },
+        { "type": "faq", "settings": { "question": "My tracking isn't updating — what now?", "answer": "<p>Carriers can take 24-48 hours to scan a parcel. If it's still stuck, contact us and we'll help.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

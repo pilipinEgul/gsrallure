@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "track": {
+      "type": "track-order",
+      "blocks": {
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "When will my order ship?",
+            "answer": "<p>Orders are dispatched within 24 hours. You'll receive a tracking number by email once it ships.</p>"
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Where do I find my tracking number?",
+            "answer": "<p>It's in your shipping confirmation email. Paste it in the field above to see live status.</p>"
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "My tracking isn't updating — what now?",
+            "answer": "<p>Carriers can take 24–48 hours to scan a parcel after dispatch. If it stays stuck, contact us and we'll chase it for you.</p>"
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3"],
+      "settings": {
+        "eyebrow": "Order tracking",
+        "heading": "Track your order",
+        "heading_size": "h0",
+        "subheading": "Enter your tracking number to see the latest delivery status.",
+        "input_label": "Tracking number",
+        "input_placeholder": "e.g. 1Z999AA10123456784",
+        "button_label": "Track",
+        "tracking_url": "https://parcelsapp.com/en/tracking/{number}",
+        "show_account_link": true,
+        "account_prompt": "Have an account?",
+        "account_link_label": "View all your orders",
+        "show_steps": true,
+        "steps": "Ordered::We received it | Packed::Prepared with care | Shipped::On the way | Delivered::Enjoy",
+        "faq_heading": "Common questions",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": ["track"]
+}

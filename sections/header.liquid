@@ -606,6 +606,19 @@
         </a>
       {%- endif -%}
 
+      <a
+        href="#"
+        class="header__icon header__icon--gsr-wish link focus-inset"
+        data-gsr-wish-open
+        aria-label="Wishlist"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+          <path d="M12 20s-7-4.5-9.5-9C1 8 2.5 4.5 6 4.5c2.2 0 3.4 1.3 4 2.3.6-1 1.8-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 15.5 12 20 12 20z"/>
+        </svg>
+        <span class="visually-hidden">Wishlist</span>
+        <span class="gsr-wish-count" data-gsr-wish-count>0</span>
+      </a>
+
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {%- liquid
           if cart == empty

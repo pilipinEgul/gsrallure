@@ -75,14 +75,15 @@
         "cat-1": { "type": "featured_collection", "settings": { "collection": "" } },
         "cat-2": { "type": "featured_collection", "settings": { "collection": "" } },
         "cat-3": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-4": { "type": "featured_collection", "settings": { "collection": "" } }
+        "cat-4": { "type": "featured_collection", "settings": { "collection": "" } },
+        "cat-5": { "type": "featured_collection", "settings": { "collection": "" } }
       },
-      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4", "cat-5"],
       "settings": {
         "title": "Shop by category",
         "heading_size": "h2",
         "image_ratio": "portrait",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "color_scheme": "background-1",
         "show_view_all": true,
         "columns_mobile": "2",
@@ -150,6 +151,33 @@
         "swipe_on_mobile": true,
         "padding_top": 32,
         "padding_bottom": 64
+      }
+    },
+    "why_shop": {
+      "type": "multicolumn",
+      "blocks": {
+        "col-1": { "type": "column", "settings": { "image": "", "title": "Fast shipping", "text": "<p>Dispatched within 24 hours.</p>", "link_label": "", "link": "" } },
+        "col-2": { "type": "column", "settings": { "image": "", "title": "Secure checkout", "text": "<p>Encrypted, protected payments.</p>", "link_label": "", "link": "" } },
+        "col-3": { "type": "column", "settings": { "image": "", "title": "Premium quality", "text": "<p>Curated, tested, guaranteed.</p>", "link_label": "", "link": "" } },
+        "col-4": { "type": "column", "settings": { "image": "", "title": "Easy returns", "text": "<p>30 days, no questions asked.</p>", "link_label": "", "link": "" } },
+        "col-5": { "type": "column", "settings": { "image": "", "title": "Loved by many", "text": "<p>Thousands of five-star reviews.</p>", "link_label": "", "link": "" } }
+      },
+      "block_order": ["col-1", "col-2", "col-3", "col-4", "col-5"],
+      "settings": {
+        "title": "Why shop with us",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "square",
+        "columns_desktop": 5,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 88,
+        "padding_bottom": 88
       }
     },
     "collage": {
@@ -221,7 +249,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "background-2",
+        "color_scheme": "background-1",
         "full_width": true,
         "padding_top": 72,
         "padding_bottom": 72
@@ -253,28 +281,26 @@
       }
     },
     "gallery": {
-      "type": "multicolumn",
+      "type": "lifestyle-gallery",
       "blocks": {
-        "g-1": { "type": "column", "settings": { "image": "", "title": "", "text": "", "link_label": "", "link": "shopify://collections/all" } },
-        "g-2": { "type": "column", "settings": { "image": "", "title": "", "text": "", "link_label": "", "link": "shopify://collections/all" } },
-        "g-3": { "type": "column", "settings": { "image": "", "title": "", "text": "", "link_label": "", "link": "shopify://collections/all" } },
-        "g-4": { "type": "column", "settings": { "image": "", "title": "", "text": "", "link_label": "", "link": "shopify://collections/all" } }
+        "g-1": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
+        "g-2": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
+        "g-3": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
+        "g-4": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
+        "g-5": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
+        "g-6": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } }
       },
-      "block_order": ["g-1", "g-2", "g-3", "g-4"],
+      "block_order": ["g-1", "g-2", "g-3", "g-4", "g-5", "g-6"],
       "settings": {
-        "title": "@gsrallure",
-        "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "square",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "none",
+        "eyebrow": "As seen on you",
+        "heading": "@gsrallure",
+        "heading_size": "h1",
+        "subheading": "Tag us to be featured.",
+        "columns": 4,
+        "color_scheme": "background-1",
         "button_label": "Follow along",
         "button_link": "",
-        "color_scheme": "background-1",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 32,
+        "padding_top": 64,
         "padding_bottom": 88
       }
     },
@@ -300,6 +326,7 @@
     "categories",
     "feature",
     "best_sellers",
+    "why_shop",
     "collage",
     "spotlight",
     "story",

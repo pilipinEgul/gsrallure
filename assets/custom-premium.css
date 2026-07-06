@@ -19,6 +19,27 @@
   --gsr-muted: rgba(var(--color-foreground), 0.6);
   --gsr-faint: rgba(var(--color-foreground), 0.45);
   --gsr-glass: rgba(var(--color-background), 0.72);
+
+  /* Soft Gold accent (CTAs stay black; gold used for highlights only) */
+  --gsr-gold: #c8a96a;
+  --gsr-gold-rgb: 200, 169, 106;
+  --gsr-gold-soft: rgba(200, 169, 106, 0.14);
+
+  /* Premium system-native type stack (real SF Pro on Apple devices) */
+  --gsr-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Inter", "Manrope", "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Premium type override — applied globally over the theme font setting */
+body,
+.rte,
+input, select, textarea, button,
+.card__heading, .card__heading a,
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5,
+.title, .banner__heading, .product__title,
+.collection-list-title, .rich-text__heading {
+  font-family: var(--gsr-font-sans);
 }
 
 body {
@@ -504,6 +525,76 @@ a:hover > .gsr-arrow,
   will-change: opacity, transform;
 }
 .gsr-reveal.gsr-in { opacity: 1; transform: none; }
+
+/* ---------- Slideshow hero (redesigned homepage) ---------- */
+.slideshow__media img { transition: transform 8s var(--gsr-ease); }
+.slideshow.banner--medium .slideshow__text,
+.slideshow .slideshow__text.banner__box {
+  border-radius: var(--gsr-radius-lg);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  background: var(--gsr-glass);
+  box-shadow: var(--gsr-shadow-md);
+}
+.slideshow__text .banner__heading { letter-spacing: -0.04em; }
+/* Dots as a slim modern pill row */
+.slideshow__controls .slider-counter__link,
+.slideshow__controls .slideshow__control-wrapper .dot {
+  transition: transform 0.25s var(--gsr-ease), opacity 0.25s;
+}
+
+/* ---------- Collage (curated edits grid) ------------------ */
+.collage__item .card,
+.collage__item .media { border-radius: var(--gsr-radius); overflow: hidden; }
+.collage__item .media img { transition: transform 1.1s var(--gsr-ease); }
+.collage__item:hover .media img { transform: scale(1.05); }
+.collage__item-wrapper { box-shadow: var(--gsr-shadow-sm); border-radius: var(--gsr-radius); }
+
+/* ---------- Soft Gold accent (highlights only) ------------ */
+/* Eyebrow / caption micro-labels pick up the gold */
+.caption-with-letter-spacing,
+.rich-text .caption,
+.multicolumn .caption { color: var(--gsr-gold); }
+
+/* Product rating stars */
+.rating-star { color: var(--gsr-gold); }
+.rating { color: var(--gsr-gold); }
+
+/* Sale badge in gold */
+.badge.price__badge-sale,
+.badge--sale { background: var(--gsr-gold); color: #1d1d1f; border-color: var(--gsr-gold); }
+
+/* Inline link underline + hover in gold */
+.rte a,
+.link--gold,
+a.link.animate-arrow:hover,
+.card__heading a:hover { text-decoration-color: var(--gsr-gold); }
+
+/* Free-shipping progress bar fills gold */
+.gsr-ship-fill,
+.cart__free-shipping .progress-bar__value,
+progress::-webkit-progress-value { background: var(--gsr-gold) !important; }
+progress::-moz-progress-bar { background: var(--gsr-gold) !important; }
+
+/* Wishlist heart active state */
+.gsr-wish-count { background: var(--gsr-gold); color: #1d1d1f; }
+[data-gsr-wish].is-active .gsr-wish-icon,
+[data-gsr-wish][aria-pressed="true"] { color: var(--gsr-gold); }
+
+/* Section eyebrow helper class */
+.gsr-eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gsr-gold);
+  margin-bottom: 1rem;
+}
+
+/* Subtle gold focus glow on inputs (still keeps mono outline for a11y) */
+.field__input:focus,
+.select__select:focus { box-shadow: 0 0 0 3px var(--gsr-gold-soft); border-color: var(--gsr-gold); }
 
 /* ---------- Motion & a11y ---------------------------------- */
 :focus-visible { outline: 2px solid rgb(var(--color-foreground)); outline-offset: 3px; }

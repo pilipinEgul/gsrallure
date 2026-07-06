@@ -47,6 +47,15 @@
     >
   {%- endif -%}
 
+  <div
+    data-gsr-product
+    data-handle="{{ product.handle }}"
+    data-url="{{ product.url }}"
+    data-title="{{ product.title | escape }}"
+    data-image="{{ product.featured_media | image_url: width: 400 }}"
+    data-price="{{ product.price | money }}"
+    hidden
+  ></div>
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       <media-gallery
@@ -1164,6 +1173,8 @@
     }
   </script>
 </section>
+
+<div data-gsr-recent data-current="{{ product.handle }}"></div>
 
 {% schema %}
 {

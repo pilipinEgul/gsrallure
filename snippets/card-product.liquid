@@ -50,6 +50,19 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media">
+            <button
+              type="button"
+              class="gsr-wishlist"
+              data-gsr-wish
+              data-handle="{{ card_product.handle }}"
+              data-url="{{ card_product.url }}"
+              data-title="{{ card_product.title | escape }}"
+              data-image="{{ card_product.featured_media | image_url: width: 200 }}"
+              data-price="{{ card_product.price | money }}"
+              aria-label="{{ 'products.product.add_to_cart' | t }} — {{ card_product.title | escape }} to wishlist"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-9.5-9C1 8 2.5 4.5 6 4.5c2.2 0 3.4 1.3 4 2.3.6-1 1.8-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 15.5 12 20 12 20z"/></svg>
+            </button>
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img

@@ -1,0 +1,161 @@
+{%- comment -%}
+  Designed "Track your order" content. Rendered by the default page template
+  (sections/main-page.liquid) for the page with handle "track-your-order", so
+  the page looks polished without needing a custom template assigned in admin.
+  Standalone: all text is set here. Mirrors the look of sections/track-order.liquid.
+{%- endcomment -%}
+
+{%- style -%}
+  .track-gsr { padding-top: 72px; padding-bottom: 72px; }
+  @media screen and (min-width: 750px) {
+    .track-gsr { padding-top: 96px; padding-bottom: 96px; }
+  }
+
+  .track__wrap { max-width: 72rem; margin: 0 auto; text-align: center; }
+  .track__eyebrow {
+    display: inline-block; text-transform: uppercase; letter-spacing: 0.18em;
+    font-size: 1.15rem; font-weight: 600; color: var(--gsr-gold, #c8a96a); margin-bottom: 1.2rem;
+  }
+  .track__subheading { color: var(--gsr-muted, rgba(0,0,0,.6)); font-size: 1.7rem; margin-top: 1rem; }
+
+  .track__card {
+    margin: 4rem auto 0; max-width: 60rem;
+    background: rgb(var(--color-background));
+    border: 1px solid var(--gsr-hairline, rgba(0,0,0,.09));
+    border-radius: var(--gsr-radius-lg, 22px);
+    box-shadow: var(--gsr-shadow-md, 0 8px 24px rgba(0,0,0,.08));
+    padding: 3.2rem; text-align: left;
+  }
+  .track__label { display: block; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 1rem; }
+  .track__form { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .track__input {
+    flex: 1 1 24rem; min-height: 5.2rem; padding: 0 1.8rem;
+    border: 1px solid var(--gsr-hairline-strong, rgba(0,0,0,.16));
+    border-radius: 100px; font-size: 1.6rem;
+    background: rgb(var(--color-background)); color: rgb(var(--color-foreground));
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .track__input:focus {
+    outline: none; border-color: var(--gsr-gold, #c8a96a);
+    box-shadow: 0 0 0 3px var(--gsr-gold-soft, rgba(200,169,106,.14));
+  }
+  .track__submit {
+    flex: none; min-height: 5.2rem; padding: 0 3.2rem; border: 0; cursor: pointer;
+    border-radius: 100px; background: rgb(var(--color-foreground)); color: rgb(var(--color-background));
+    font-weight: 600; font-size: 1.5rem; transition: transform .25s ease;
+  }
+  .track__submit:hover { transform: translateY(-2px); }
+  .track__secondary { text-align: center; margin-top: 2rem; font-size: 1.4rem; color: var(--gsr-muted, rgba(0,0,0,.6)); }
+  .track__secondary a { color: rgb(var(--color-foreground)); text-underline-offset: .3em; }
+
+  .track__steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; margin: 6rem auto 0; max-width: 68rem; position: relative;
+  }
+  .track__steps::before {
+    content: ""; position: absolute; top: 1.4rem; left: 12%; right: 12%; height: 2px;
+    background: var(--gsr-hairline, rgba(0,0,0,.12));
+  }
+  .track__step { text-align: center; position: relative; }
+  .track__dot {
+    width: 2.8rem; height: 2.8rem; border-radius: 50%; margin: 0 auto 1.2rem;
+    background: rgb(var(--color-background));
+    border: 2px solid var(--gsr-gold, #c8a96a);
+    display: grid; place-items: center; position: relative; z-index: 1;
+  }
+  .track__dot span { width: 1rem; height: 1rem; border-radius: 50%; background: var(--gsr-gold, #c8a96a); }
+  .track__step-title { font-weight: 600; font-size: 1.4rem; letter-spacing: -0.01em; }
+  .track__step-note { color: var(--gsr-muted, rgba(0,0,0,.6)); font-size: 1.25rem; margin-top: .3rem; }
+
+  .track__faq { max-width: 60rem; margin: 6rem auto 0; text-align: left; }
+  .track__faq > h2 { text-align: center; margin-bottom: 2.4rem; }
+  .track__faq-item { border-bottom: 1px solid var(--gsr-hairline, rgba(0,0,0,.09)); padding: 1.8rem 0; }
+  .track__faq-item summary {
+    cursor: pointer; font-weight: 600; letter-spacing: -0.01em; font-size: 1.6rem;
+    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  .track__faq-item summary::-webkit-details-marker { display: none; }
+  .track__faq-item summary::after { content: "+"; font-size: 2rem; color: var(--gsr-gold, #c8a96a); transition: transform .3s; }
+  .track__faq-item[open] summary::after { content: "\2013"; }
+  .track__faq-answer { color: var(--gsr-muted, rgba(0,0,0,.7)); margin-top: 1rem; line-height: 1.6; }
+
+  @media screen and (max-width: 749px) {
+    .track__steps { grid-template-columns: repeat(2, 1fr); gap: 2.4rem 1rem; }
+    .track__steps::before { display: none; }
+    .track__card { padding: 2.4rem; }
+  }
+{%- endstyle -%}
+
+<div class="track color-background-1 gradient">
+  <div class="track-gsr page-width">
+    <div class="track__wrap">
+      <span class="track__eyebrow">Order tracking</span>
+      <h1 class="title h0">Track your order</h1>
+      <p class="track__subheading">Enter your tracking number to see the latest delivery status.</p>
+    </div>
+
+    <div class="track__card">
+      <form data-track-form data-track-url="https://parcelsapp.com/en/tracking/{number}" role="search">
+        <label class="track__label" for="Track-Number">Tracking number</label>
+        <div class="track__form">
+          <input
+            id="Track-Number"
+            data-track-input
+            class="track__input"
+            type="text"
+            name="tracking_number"
+            placeholder="e.g. 1Z999AA10123456784"
+            autocomplete="off"
+          >
+          <button type="submit" class="track__submit">Track</button>
+        </div>
+      </form>
+      <p class="track__secondary">
+        Have an account?
+        <a href="{{ routes.account_url | default: routes.account_login_url }}">View all your orders</a>
+      </p>
+    </div>
+
+    <div class="track__steps">
+      <div class="track__step"><div class="track__dot"><span></span></div><div class="track__step-title">Ordered</div><div class="track__step-note">We received it</div></div>
+      <div class="track__step"><div class="track__dot"><span></span></div><div class="track__step-title">Packed</div><div class="track__step-note">Prepared with care</div></div>
+      <div class="track__step"><div class="track__dot"><span></span></div><div class="track__step-title">Shipped</div><div class="track__step-note">On the way</div></div>
+      <div class="track__step"><div class="track__dot"><span></span></div><div class="track__step-title">Delivered</div><div class="track__step-note">Enjoy</div></div>
+    </div>
+
+    <div class="track__faq">
+      <h2 class="h3">Common questions</h2>
+      <details class="track__faq-item" open>
+        <summary>When will my order ship?</summary>
+        <div class="track__faq-answer"><p>Orders are dispatched within 24 hours. You'll receive a tracking number by email once it ships.</p></div>
+      </details>
+      <details class="track__faq-item">
+        <summary>Where do I find my tracking number?</summary>
+        <div class="track__faq-answer"><p>It's in your shipping confirmation email. Paste it in the field above to see live status.</p></div>
+      </details>
+      <details class="track__faq-item">
+        <summary>My tracking isn't updating — what now?</summary>
+        <div class="track__faq-answer"><p>Carriers can take 24–48 hours to scan a parcel after dispatch. If it stays stuck, contact us and we'll chase it for you.</p></div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.addEventListener('submit', function (e) {
+      var form = e.target.closest('[data-track-form]');
+      if (!form) return;
+      e.preventDefault();
+      var input = form.querySelector('[data-track-input]');
+      var num = (input && input.value || '').trim();
+      if (!num) { if (input) input.focus(); return; }
+      var tpl = form.getAttribute('data-track-url') || '';
+      var url;
+      if (!tpl) { url = 'https://parcelsapp.com/en/tracking/' + encodeURIComponent(num); }
+      else if (tpl.indexOf('{number}') > -1) { url = tpl.replace('{number}', encodeURIComponent(num)); }
+      else { url = tpl + encodeURIComponent(num); }
+      window.open(url, '_blank', 'noopener');
+    });
+  })();
+</script>

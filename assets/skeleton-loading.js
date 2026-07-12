@@ -32,9 +32,27 @@
     img.addEventListener('error', function () { markLoaded(img); }, { once: true });
   }
 
+  function initVideo(video) {
+    if (video.dataset.gsrSkeleton) return;
+    video.dataset.gsrSkeleton = '1';
+    if (video.classList.contains('no-skeleton')) return;
+
+    video.classList.add('gsr-skeleton');
+
+    // readyState >= 2 (HAVE_CURRENT_DATA) means it already has a frame.
+    if (video.readyState >= 2) {
+      markLoaded(video);
+      return;
+    }
+
+    video.addEventListener('loadeddata', function () { markLoaded(video); }, { once: true });
+    video.addEventListener('error', function () { markLoaded(video); }, { once: true });
+  }
+
   function scan(root) {
     if (!root || !root.querySelectorAll) return;
     root.querySelectorAll('img').forEach(initImg);
+    root.querySelectorAll('video[data-gsr-inview]').forEach(initVideo);
   }
 
   function start() {
@@ -50,6 +68,8 @@
           if (node.nodeType !== 1) continue;
           if (node.tagName === 'IMG') {
             initImg(node);
+          } else if (node.tagName === 'VIDEO' && node.hasAttribute('data-gsr-inview')) {
+            initVideo(node);
           } else {
             scan(node);
           }

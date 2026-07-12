@@ -75,7 +75,7 @@
           {% if section.settings.loop %}loop{% endif %}
           {% if section.settings.show_controls %}controls{% endif %}
           playsinline
-          preload="{% if is_autoplay %}none{% else %}metadata{% endif %}"
+          preload="{% if is_autoplay %}auto{% else %}metadata{% endif %}"
           {% if section.settings.cover_image != blank %}poster="{{ section.settings.cover_image | image_url: width: 1500 }}"{% endif %}
         >
           <source src="{{ section.settings.asset_video | asset_url }}" type="video/mp4">

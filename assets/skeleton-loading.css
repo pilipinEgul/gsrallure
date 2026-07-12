@@ -31,6 +31,33 @@ img.gsr-skeleton:not(.gsr-loaded) {
   font-size: 0;
 }
 
+/* Same shimmer for autoplaying background videos while they buffer */
+video.gsr-skeleton {
+  background-color: rgba(var(--color-foreground), 0.06);
+  background-image: linear-gradient(
+    90deg,
+    rgba(var(--color-foreground), 0) 0%,
+    rgba(var(--color-foreground), 0.12) 50%,
+    rgba(var(--color-foreground), 0) 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  background-position: 200% 0;
+  animation: gsr-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+video.gsr-skeleton.gsr-loaded {
+  background-image: none;
+  background-color: transparent;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  video.gsr-skeleton {
+    animation: none;
+  }
+}
+
 /* Loaded: drop the shimmer and fade the image in cleanly */
 img.gsr-skeleton.gsr-loaded {
   background-image: none;

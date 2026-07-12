@@ -126,33 +126,6 @@
         "padding_bottom": 40
       }
     },
-    "best_sellers": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Best sellers",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": false,
-        "color_scheme": "background-1",
-        "image_ratio": "portrait",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "enable_quick_add": true,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 32,
-        "padding_bottom": 64
-      }
-    },
     "why_shop": {
       "type": "multicolumn",
       "blocks": {
@@ -343,7 +316,6 @@
     "marquee",
     "categories",
     "feature",
-    "best_sellers",
     "why_shop",
     "collage",
     "brand_video",

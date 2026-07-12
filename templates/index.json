@@ -131,8 +131,8 @@
       "type": "collage",
       "blocks": {
         "block-1": { "type": "video", "settings": { "asset_video": "gsr-brand-video.mp4", "cover_image": "", "image_padding": false } },
-        "block-2": { "type": "image", "settings": { "image": "", "image_padding": false } },
-        "block-3": { "type": "collection", "settings": { "collection": "" } }
+        "block-2": { "type": "image", "settings": { "image": "shopify://shop_images/DA064.jpg", "image_padding": false } },
+        "block-3": { "type": "image", "settings": { "image": "shopify://shop_images/WEB_COVER_PHOTO.png", "image_padding": false } }
       },
       "block_order": ["block-1", "block-2", "block-3"],
       "settings": {

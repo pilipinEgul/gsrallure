@@ -71,11 +71,11 @@
       {%- comment -%} Self-hosted video from theme assets. Autoplay forces muted so browsers permit it. {%- endcomment -%}
       <div id="Video-{{ section.id }}" class="video-section__media video-section__media--portrait global-media-settings global-media-settings--no-shadow gradient">
         <video
-          {% if is_autoplay %}autoplay muted{% endif %}
+          {% if is_autoplay %}data-gsr-inview muted{% endif %}
           {% if section.settings.loop %}loop{% endif %}
           {% if section.settings.show_controls %}controls{% endif %}
           playsinline
-          preload="metadata"
+          preload="{% if is_autoplay %}none{% else %}metadata{% endif %}"
           {% if section.settings.cover_image != blank %}poster="{{ section.settings.cover_image | image_url: width: 1500 }}"{% endif %}
         >
           <source src="{{ section.settings.asset_video | asset_url }}" type="video/mp4">

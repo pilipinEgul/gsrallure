@@ -222,6 +222,7 @@
     {{ 'custom-premium.css' | asset_url | stylesheet_tag }}
     {{ 'skeleton-loading.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'skeleton-loading.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'gsr-video-inview.js' | asset_url }}" defer="defer"></script>
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>

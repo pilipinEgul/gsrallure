@@ -80,6 +80,57 @@
       padding-top: 0.5rem;
     }
   }
+
+  .header__category-bar {
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .category-bar {
+    width: 100%;
+  }
+
+  .category-bar__list {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 1rem 0;
+    list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .category-bar__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-bar__item {
+    flex: 0 0 auto;
+  }
+
+  .category-bar__pill {
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    border-radius: 100px;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: rgb(var(--color-foreground));
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .category-bar__pill:hover {
+    border-color: rgb(var(--color-foreground));
+  }
+
+  .category-bar__pill--active {
+    background-color: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    border-color: rgb(var(--color-foreground));
+  }
 </style>
 
 {%- style -%}
@@ -639,6 +690,40 @@
       </a>
     </div>
   </header>
+
+  {%- if section.settings.enable_category_bar -%}
+    {%- liquid
+      assign current_handle = ''
+      if template.name == 'collection' and collection != blank
+        assign current_handle = collection.handle
+      endif
+    -%}
+    <div class="header__category-bar">
+      <div class="page-width">
+        <nav class="category-bar" aria-label="{{ 'sections.header.menu' | t | default: 'Categories' }}">
+          <ul class="category-bar__list" role="list">
+            {%- if section.settings.category_bar_show_all -%}
+              <li class="category-bar__item">
+                <a href="{{ routes.all_products_collection_url }}" class="category-bar__pill{% if current_handle == '' or current_handle == 'all' %} category-bar__pill--active{% endif %}"{% if current_handle == '' or current_handle == 'all' %} aria-current="page"{% endif %}>
+                  All
+                </a>
+              </li>
+            {%- endif -%}
+            {%- for col in collections -%}
+              {%- if col.handle == 'frontpage' or col.all_products_count == 0 -%}
+                {%- continue -%}
+              {%- endif -%}
+              <li class="category-bar__item">
+                <a href="{{ col.url }}" class="category-bar__pill{% if col.handle == current_handle %} category-bar__pill--active{% endif %}"{% if col.handle == current_handle %} aria-current="page"{% endif %}>
+                  {{ col.title | escape }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  {%- endif -%}
 </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -877,6 +962,23 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "header",
+      "content": "Category filter bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_category_bar",
+      "default": true,
+      "label": "Show category filter bar",
+      "info": "Displays a row of collection pills below the header. Selecting one filters the store by that category."
+    },
+    {
+      "type": "checkbox",
+      "id": "category_bar_show_all",
+      "default": true,
+      "label": "Show \"All\" pill"
     },
     {
       "type": "checkbox",

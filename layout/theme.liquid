@@ -12,6 +12,12 @@
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+    {%- else -%}
+      {%- assign gsr_favicon = 'https://gsrallure.com/cdn/shop/files/GSR_ALLURE_d83c47f3-a416-4fc5-b2f1-81ad8d018bf6.jpg' -%}
+      <link rel="icon" type="image/jpeg" sizes="32x32" href="{{ gsr_favicon }}?width=32&amp;height=32&amp;crop=center">
+      <link rel="icon" type="image/jpeg" sizes="16x16" href="{{ gsr_favicon }}?width=16&amp;height=16&amp;crop=center">
+      <link rel="apple-touch-icon" href="{{ gsr_favicon }}?width=180&amp;height=180&amp;crop=center">
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}

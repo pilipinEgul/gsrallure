@@ -131,6 +131,22 @@
     color: rgb(var(--color-background));
     border-color: rgb(var(--color-foreground));
   }
+
+  .category-bar__pill--with-image {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-left: 0.5rem;
+  }
+
+  .category-bar__thumb {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 100px;
+    object-fit: cover;
+    display: block;
+    flex: 0 0 auto;
+  }
 </style>
 
 {%- style -%}
@@ -704,7 +720,10 @@
           <ul class="category-bar__list" role="list">
             {%- if section.settings.category_bar_show_all -%}
               <li class="category-bar__item">
-                <a href="{{ routes.all_products_collection_url }}" class="category-bar__pill{% if current_handle == '' or current_handle == 'all' %} category-bar__pill--active{% endif %}"{% if current_handle == '' or current_handle == 'all' %} aria-current="page"{% endif %}>
+                <a href="{{ routes.all_products_collection_url }}" class="category-bar__pill{% if section.settings.category_all_image != blank %} category-bar__pill--with-image{% endif %}{% if current_handle == '' or current_handle == 'all' %} category-bar__pill--active{% endif %}"{% if current_handle == '' or current_handle == 'all' %} aria-current="page"{% endif %}>
+                  {%- if section.settings.category_all_image != blank -%}
+                    <img class="category-bar__thumb" src="{{ section.settings.category_all_image }}" alt="" width="24" height="24" loading="lazy">
+                  {%- endif -%}
                   All
                 </a>
               </li>
@@ -979,6 +998,13 @@
       "id": "category_bar_show_all",
       "default": true,
       "label": "Show \"All\" pill"
+    },
+    {
+      "type": "text",
+      "id": "category_all_image",
+      "default": "https://gsrallure.com/cdn/shop/files/gsr_allure_1.png?v=1774283055&width=200",
+      "label": "\"All\" pill image URL",
+      "info": "Shows a small round thumbnail inside the All pill. Paste any image URL (defaults to the gsrallure.com banner). Leave blank for text only."
     },
     {
       "type": "checkbox",

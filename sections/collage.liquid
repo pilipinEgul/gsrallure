@@ -58,6 +58,23 @@
                 wrapper_class: section.settings.card_styles
               %}
             {%- when 'video' -%}
+              {%- if block.settings.asset_video != blank -%}
+                <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }}{% endif %}">
+                  <div class="media media--transparent ratio"{% if block.settings.cover_image != blank %} style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"{% else %} style="--ratio-percent: 100%"{% endif %}>
+                    <video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      {% if block.settings.cover_image != blank %}poster="{{ block.settings.cover_image | image_url: width: 1500 }}"{% endif %}
+                      style="width:100%;height:100%;object-fit:cover;display:block;"
+                    >
+                      <source src="{{ block.settings.asset_video | asset_url }}" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              {%- else -%}
               <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }}{% endif %}">
                 <noscript>
                   <a href="{{ block.settings.video_url }}" class="collage-card__link{% if block.settings.image_padding %} collage-card-spacing{% endif %}">
@@ -114,6 +131,7 @@
                   </div>
                 </modal-dialog>
               </div>
+              {%- endif -%}
           {%- endcase -%}
         </div>
       {%- endfor -%}
@@ -307,6 +325,12 @@
       "type": "video",
       "name": "t:sections.collage.blocks.video.name",
       "settings": [
+        {
+          "type": "text",
+          "id": "asset_video",
+          "label": "Theme asset video (filename)",
+          "info": "Filename of a video in the assets folder, e.g. gsr-brand-video.mp4. Plays inline, muted and looping. Overrides the URL below when set."
+        },
         {
           "type": "image_picker",
           "id": "cover_image",

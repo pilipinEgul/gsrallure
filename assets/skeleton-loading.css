@@ -1,0 +1,58 @@
+/* Skeleton (shimmer) loading for all images, applied globally via skeleton-loading.js */
+
+@keyframes gsr-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* While an image is loading, show a shimmering placeholder behind it.
+   Once loaded (.gsr-loaded), the image paints over it and the shimmer stops. */
+img.gsr-skeleton {
+  background-color: rgba(var(--color-foreground), 0.06);
+  background-image: linear-gradient(
+    90deg,
+    rgba(var(--color-foreground), 0) 0%,
+    rgba(var(--color-foreground), 0.12) 50%,
+    rgba(var(--color-foreground), 0) 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  background-position: 200% 0;
+  animation: gsr-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+/* Hide the alt-text flash while the picture is still loading */
+img.gsr-skeleton:not(.gsr-loaded) {
+  color: transparent;
+  font-size: 0;
+}
+
+/* Loaded: drop the shimmer and fade the image in cleanly */
+img.gsr-skeleton.gsr-loaded {
+  background-image: none;
+  background-color: transparent;
+  animation: none;
+  color: inherit;
+  font-size: inherit;
+  animation: gsr-skeleton-fade-in 0.4s ease both;
+}
+
+@keyframes gsr-skeleton-fade-in {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img.gsr-skeleton,
+  img.gsr-skeleton.gsr-loaded {
+    animation: none;
+  }
+}

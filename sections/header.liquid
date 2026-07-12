@@ -732,8 +732,17 @@
               {%- if col.handle == 'frontpage' or col.all_products_count == 0 -%}
                 {%- continue -%}
               {%- endif -%}
+              {%- liquid
+                assign col_img = col.image
+                if col_img == blank
+                  assign col_img = col.products.first.featured_image
+                endif
+              -%}
               <li class="category-bar__item">
-                <a href="{{ col.url }}" class="category-bar__pill{% if col.handle == current_handle %} category-bar__pill--active{% endif %}"{% if col.handle == current_handle %} aria-current="page"{% endif %}>
+                <a href="{{ col.url }}" class="category-bar__pill{% if col_img != blank %} category-bar__pill--with-image{% endif %}{% if col.handle == current_handle %} category-bar__pill--active{% endif %}"{% if col.handle == current_handle %} aria-current="page"{% endif %}>
+                  {%- if col_img != blank -%}
+                    <img class="category-bar__thumb" src="{{ col_img | image_url: width: 48 }}" alt="" width="24" height="24" loading="lazy">
+                  {%- endif -%}
                   {{ col.title | escape }}
                 </a>
               </li>

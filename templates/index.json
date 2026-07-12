@@ -42,7 +42,7 @@
       },
       "block_order": ["slide-1", "slide-2"],
       "settings": {
-        "layout": "full_bleed",
+        "layout": "grid",
         "slide_height": "large",
         "slider_visual": "dots",
         "auto_rotate": true,
@@ -72,13 +72,21 @@
     "categories": {
       "type": "collection-list",
       "blocks": {
-        "cat-1": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-2": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-3": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-4": { "type": "featured_collection", "settings": { "collection": "" } },
-        "cat-5": { "type": "featured_collection", "settings": { "collection": "" } }
+        "cat-1": { "type": "featured_collection", "settings": { "collection": "necklaces" } },
+        "cat-2": { "type": "featured_collection", "settings": { "collection": "bracelets" } },
+        "cat-3": { "type": "featured_collection", "settings": { "collection": "earrings" } },
+        "cat-4": { "type": "featured_collection", "settings": { "collection": "rings" } },
+        "cat-5": { "type": "featured_collection", "settings": { "collection": "makeup" } },
+        "cat-6": { "type": "featured_collection", "settings": { "collection": "skincare" } },
+        "cat-7": { "type": "featured_collection", "settings": { "collection": "body-care" } },
+        "cat-8": { "type": "featured_collection", "settings": { "collection": "nail-care" } },
+        "cat-9": { "type": "featured_collection", "settings": { "collection": "bags-wallets" } },
+        "cat-10": { "type": "featured_collection", "settings": { "collection": "kids-clothing" } },
+        "cat-11": { "type": "featured_collection", "settings": { "collection": "baby-clothing" } },
+        "cat-12": { "type": "featured_collection", "settings": { "collection": "supplements" } },
+        "cat-13": { "type": "featured_collection", "settings": { "collection": "featured-products" } }
       },
-      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4", "cat-5"],
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4", "cat-5", "cat-6", "cat-7", "cat-8", "cat-9", "cat-10", "cat-11", "cat-12", "cat-13"],
       "settings": {
         "title": "Shop by category",
         "heading_size": "h2",
@@ -90,40 +98,6 @@
         "swipe_on_mobile": true,
         "padding_top": 96,
         "padding_bottom": 64
-      }
-    },
-    "feature": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": { "heading": "Made to last", "heading_size": "h1" }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Every piece is curated, tested and guaranteed — quality you can feel, at a price that makes sense.</p>",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": { "button_label": "Our story", "button_link": "shopify://collections/all" }
-        }
-      },
-      "block_order": ["heading", "text", "button"],
-      "settings": {
-        "image": "",
-        "height": "large",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "color_scheme": "background-1",
-        "mobile_content_alignment": "left",
-        "padding_top": 40,
-        "padding_bottom": 40
       }
     },
     "why_shop": {
@@ -156,7 +130,7 @@
     "collage": {
       "type": "collage",
       "blocks": {
-        "block-1": { "type": "collection", "settings": { "collection": "" } },
+        "block-1": { "type": "video", "settings": { "asset_video": "gsr-brand-video.mp4", "cover_image": "", "image_padding": false } },
         "block-2": { "type": "image", "settings": { "image": "", "image_padding": false } },
         "block-3": { "type": "collection", "settings": { "collection": "" } }
       },
@@ -169,46 +143,6 @@
         "card_styles": "product-card-wrapper",
         "color_scheme": "background-1",
         "padding_top": 32,
-        "padding_bottom": 64
-      }
-    },
-    "brand_video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "autoplay": true,
-        "loop": true,
-        "show_controls": false,
-        "asset_video": "gsr-brand-video.mp4",
-        "video": "",
-        "cover_image": "",
-        "video_url": "",
-        "description": "GSR Allure brand film",
-        "full_width": true,
-        "color_scheme": "background-1",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "spotlight": {
-      "type": "featured-product",
-      "blocks": {
-        "title": { "type": "title", "settings": { "heading_size": "h1" } },
-        "price": { "type": "price", "settings": {} },
-        "text": { "type": "text", "settings": { "text": "Editor's pick", "text_style": "uppercase" } },
-        "variant_picker": { "type": "variant_picker", "settings": { "picker_type": "button" } },
-        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } }
-      },
-      "block_order": ["text", "title", "price", "variant_picker", "buy_buttons"],
-      "settings": {
-        "product": "",
-        "color_scheme": "background-2",
-        "secondary_background": false,
-        "media_position": "left",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 64,
         "padding_bottom": 64
       }
     },
@@ -242,58 +176,9 @@
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "background-1",
-        "full_width": true,
+        "full_width": false,
         "padding_top": 72,
         "padding_bottom": 72
-      }
-    },
-    "testimonials": {
-      "type": "multicolumn",
-      "blocks": {
-        "t-1": { "type": "column", "settings": { "image": "", "title": "Marisa L.", "text": "<p>“The quality genuinely surprised me for the price. I get compliments constantly.”</p>", "link_label": "", "link": "" } },
-        "t-2": { "type": "column", "settings": { "image": "", "title": "Daniel R.", "text": "<p>“Fast shipping, beautiful packaging, and it actually works. My go-to for gifts.”</p>", "link_label": "", "link": "" } },
-        "t-3": { "type": "column", "settings": { "image": "", "title": "Priya S.", "text": "<p>“Clean site, easy checkout, and support replied within the hour. This is how it should feel.”</p>", "link_label": "", "link": "" } }
-      },
-      "block_order": ["t-1", "t-2", "t-3"],
-      "settings": {
-        "title": "What customers say",
-        "heading_size": "h2",
-        "image_width": "third",
-        "image_ratio": "circle",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "background-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 32,
-        "padding_bottom": 88
-      }
-    },
-    "gallery": {
-      "type": "lifestyle-gallery",
-      "blocks": {
-        "g-1": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
-        "g-2": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
-        "g-3": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
-        "g-4": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
-        "g-5": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } },
-        "g-6": { "type": "image", "settings": { "image": "", "link": "shopify://collections/all" } }
-      },
-      "block_order": ["g-1", "g-2", "g-3", "g-4", "g-5", "g-6"],
-      "settings": {
-        "eyebrow": "As seen on you",
-        "heading": "@gsrallure",
-        "heading_size": "h1",
-        "subheading": "Tag us to be featured.",
-        "columns": 4,
-        "color_scheme": "background-1",
-        "button_label": "Follow along",
-        "button_link": "",
-        "padding_top": 64,
-        "padding_bottom": 88
       }
     },
     "newsletter": {
@@ -305,7 +190,7 @@
       },
       "block_order": ["heading", "paragraph", "email_form"],
       "settings": {
-        "full_width": true,
+        "full_width": false,
         "color_scheme": "inverse",
         "padding_top": 72,
         "padding_bottom": 72
@@ -316,14 +201,9 @@
     "hero",
     "marquee",
     "categories",
-    "feature",
     "why_shop",
     "collage",
-    "brand_video",
-    "spotlight",
     "story",
-    "testimonials",
-    "gallery",
     "newsletter"
   ]
 }

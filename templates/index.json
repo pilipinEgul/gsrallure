@@ -180,6 +180,7 @@
         "autoplay": true,
         "loop": true,
         "show_controls": false,
+        "asset_video": "gsr-brand-video.mp4",
         "video": "",
         "cover_image": "",
         "video_url": "",

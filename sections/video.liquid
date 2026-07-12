@@ -29,6 +29,10 @@
   if section.settings.video != blank
     assign has_native = true
   endif
+  assign has_asset = false
+  if section.settings.asset_video != blank
+    assign has_asset = true
+  endif
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -41,7 +45,21 @@
       {%- endunless -%}
     </div>
 
-    {%- if is_autoplay -%}
+    {%- if has_asset -%}
+      {%- comment -%} Self-hosted video from theme assets. Autoplay forces muted so browsers permit it. {%- endcomment -%}
+      <div id="Video-{{ section.id }}" class="video-section__media global-media-settings{% if section.settings.full_width %} global-media-settings--full-width{% endif %} gradient">
+        <video
+          {% if is_autoplay %}autoplay muted{% endif %}
+          {% if section.settings.loop %}loop{% endif %}
+          {% if section.settings.show_controls %}controls{% endif %}
+          playsinline
+          preload="metadata"
+          {% if section.settings.cover_image != blank %}poster="{{ section.settings.cover_image | image_url: width: 1500 }}"{% endif %}
+        >
+          <source src="{{ section.settings.asset_video | asset_url }}" type="video/mp4">
+        </video>
+      </div>
+    {%- elsif is_autoplay -%}
       {%- comment -%} Autoplay: muted + looping so browsers permit it. {%- endcomment -%}
       <div id="Video-{{ section.id }}" class="video-section__media global-media-settings{% if section.settings.full_width %} global-media-settings--full-width{% endif %} gradient"
         {% if section.settings.cover_image != blank and has_native == false and section.settings.video_url == blank %} style="padding-bottom: {{ 1 | divided_by: section.settings.cover_image.aspect_ratio | times: 100 }}%;"{% endif %}
@@ -219,6 +237,12 @@
     {
       "type": "header",
       "content": "Video source"
+    },
+    {
+      "type": "text",
+      "id": "asset_video",
+      "label": "Theme asset video (filename)",
+      "info": "Filename of a video in the theme's assets folder, e.g. gsr-brand-video.mp4. Highest priority — overrides the options below when set."
     },
     {
       "type": "video",

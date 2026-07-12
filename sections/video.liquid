@@ -21,6 +21,28 @@
     display: block;
     object-fit: cover;
   }
+
+  /* Portrait (9:16) self-hosted video: fixed-ratio box so it can't overlap other sections */
+  #Video-{{ section.id }}.video-section__media--portrait {
+    aspect-ratio: 9 / 16;
+    max-width: 405px;
+    margin-inline: auto;
+    overflow: hidden;
+  }
+
+  #Video-{{ section.id }}.video-section__media--portrait video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 749px) {
+    #Video-{{ section.id }}.video-section__media--portrait {
+      max-width: min(78vw, 340px);
+      max-height: 80vh;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -47,7 +69,7 @@
 
     {%- if has_asset -%}
       {%- comment -%} Self-hosted video from theme assets. Autoplay forces muted so browsers permit it. {%- endcomment -%}
-      <div id="Video-{{ section.id }}" class="video-section__media global-media-settings{% if section.settings.full_width %} global-media-settings--full-width{% endif %} gradient">
+      <div id="Video-{{ section.id }}" class="video-section__media video-section__media--portrait global-media-settings global-media-settings--no-shadow gradient">
         <video
           {% if is_autoplay %}autoplay muted{% endif %}
           {% if section.settings.loop %}loop{% endif %}

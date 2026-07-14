@@ -73,6 +73,20 @@
                       {%- endfor -%}
                     </ul>
                   {%- endif -%}
+                {%- when 'policies' -%}
+                  {%- if shop.policies.size > 0 -%}
+                    <ul class="footer-block__details-content list-unstyled">
+                      {%- for policy in shop.policies -%}
+                        {%- if policy.url != blank -%}
+                          <li>
+                            <a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">
+                              {{ policy.title | escape }}
+                            </a>
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
                 {%- when 'image' -%}
                   <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
                     {%- if block.settings.image != blank -%}
@@ -428,6 +442,22 @@
           "id": "subtext",
           "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "policies",
+      "name": "Policies",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Policies",
+          "label": "Heading"
+        },
+        {
+          "type": "paragraph",
+          "content": "Links come automatically from Settings → Policies. Fill in a policy there and it appears here."
         }
       ]
     },

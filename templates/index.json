@@ -24,7 +24,7 @@
         "slide-2": {
           "type": "slide",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/WEB_COVER_PHOTO.png",
             "heading": "New arrivals",
             "heading_size": "h0",
             "subheading": "Chosen for quality, made to last.",
